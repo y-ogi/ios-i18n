@@ -69,7 +69,7 @@
 		tableName = @"Localizable";
 	}
 	
-	// keyVariant: key##{form}
+	// keyVariant: key__{form}__
 	
 	NSString *lang = locale;
 	NSRange range = [locale rangeOfString:@"-"];
@@ -78,9 +78,9 @@
 	}
 	
 	const char* form = pluralformf([lang cStringUsingEncoding:NSASCIIStringEncoding], pluralValue);
-	char suffix[16] = "##{";
+	char suffix[16] = "__{";
 	strcat(suffix, form);
-	strcat(suffix, "}");
+	strcat(suffix, "}__");
 	NSString *keyVariant = [key stringByAppendingString:[NSString stringWithUTF8String:suffix]];
 	NSDictionary *dict = [self stringsWithContentsOfFile:tableName forLocalization:locale];
 	NSString *ls = dict[keyVariant];
